@@ -1,0 +1,64 @@
+@use "../base/base" as *;
+
+.doc {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  gap: .5em;
+  cursor: pointer;
+  @include transition-ease(opacity);
+
+  &:hover,
+  &:focus {
+    opacity: .5;
+  }
+
+  .remove-btn {
+    opacity: .8;
+    @include transition-ease(opacity);
+
+    &:hover,
+    &:focus {
+      opacity: .3;
+    }
+  }
+
+  .transparent-textarea {
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+  }
+
+  .doc-el {
+    z-index: 1;
+    align-self: center;
+  }
+}
+
+.active {
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    translate: 0 -15px;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    background-color: $bars;
+    position: absolute;
+    left: 0;
+  }
+
+  // overwriting
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.hide {
+  display: none;
+}

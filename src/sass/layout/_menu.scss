@@ -1,0 +1,76 @@
+@use "../base/base" as *;
+
+.menu {
+  height: 100vh;
+  position: absolute;
+  background-color: white;
+  @include transition-ease(left);
+  left: -100vw;
+  min-width: 200px;
+  z-index: 2;
+
+  >div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      padding: 1em;
+
+      #saved-num {
+        margin-left: .2em;
+        opacity: .6;
+      }
+    }
+
+    i {
+      padding-right: 1em;
+    }
+
+    .theme-btn {
+      @include transition-ease(opacity);
+
+      &:hover,
+      &:focus {
+        opacity: .5;
+      }
+    }
+  }
+
+  .doc {
+    padding: .5em 1em;
+    justify-content: space-between;
+
+    .menu-file-btns {
+      display: flex;
+      gap: 1em;
+
+      .download-btn {
+        @include transition-ease(opacity);
+
+        &:hover,
+        &:focus {
+          opacity: .5;
+        }
+      }
+    }
+
+    .document {
+      display: flex;
+
+      #file-name {
+        max-width: auto;
+        min-width: auto;
+        padding-left: .5em;
+      }
+    }
+  }
+
+  .docs-nav {
+    flex-direction: column-reverse;
+  }
+}
+
+.show {
+  left: 0;
+}

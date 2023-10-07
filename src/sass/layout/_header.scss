@@ -1,0 +1,153 @@
+@use "../base/base" as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: $main;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-right: 5em;
+
+  div {
+    display: flex;
+  }
+
+  >div {
+    gap: .5em;
+  }
+
+  nav {
+    // display: flex;
+    // align-items: center;
+    // padding-right: .5em;
+
+    ul {
+      height: 100%;
+      display: flex;
+      gap: .5em;
+    }
+  }
+
+  .long-nav {
+    &::after {
+      content: "";
+      width: 25%;
+      height: 51px;
+      right: 0;
+      top: 0;
+      background-image: linear-gradient(to right, transparent, rgb(75, 75, 75));
+      position: absolute;
+    }
+
+    .add-btn {
+      position: absolute;
+      right: 55px;
+      top: 16px;
+      color: white;
+      border-radius: 5px;
+      z-index: 1;
+      opacity: 1;
+    }
+  }
+
+  .save-btn {
+    position: absolute;
+    background-color: #ff9980;
+    border-radius: 4px;
+    padding: .5em;
+    margin: .5em;
+    right: 5px;
+    top: -1px;
+    z-index: 1;
+    @include transition-ease(background-color);
+
+    &:hover,
+    &:focus {
+      background-color: #ffb6a3;
+    }
+  }
+
+  .add-btn {
+    padding: .1em;
+    // margin-left: 1em;
+    opacity: .3;
+    @include transition-ease(opacity);
+
+    &:hover,
+    &:focus {
+      opacity: .8;
+    }
+  }
+
+  ul li:last-child {
+    align-self: center;
+  }
+
+  // .active {
+  //   position: relative;
+  //   cursor: pointer;
+  //   height: 100%;
+
+  //   &::after {
+  //     content: "";
+  //     height: 125%;
+  //     translate: -10px -15px;
+  //     border-radius: 0 0 10px 10px;
+  //     width: 115%;
+  //     background-color: $bars;
+  //     position: absolute;
+  //   }
+
+  //   // overwriting
+  //   &:hover,
+  //   &:focus {
+  //     opacity: 1;
+  //   }
+  // }
+
+  .menu-btn {
+    margin: 1em;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &::after {
+      content: "markitdown";
+      opacity: .8;
+      display: none;
+      border-right: 1px solid rgba(0, 0, 0, 0.4);
+      padding: 0 1em
+    }
+
+    .btn-icon {
+      @include transition-ease(rotate);
+    }
+    
+    &:hover .btn-icon,
+    &:focus .btn-icon {
+      rotate: 90deg;
+    }
+  }
+
+  .menu-btn-mode {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    background-image: linear-gradient(to right, $main 90%, transparent);
+  }
+
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: #b3b3b3;
+  //   border-radius: 10px;
+  //   border: 0px solid $main;
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //   background-color: $main;
+  // }
+}

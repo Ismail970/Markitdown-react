@@ -1,0 +1,90 @@
+@use "../base/base" as *;
+
+@include media-lg {
+  .header {
+    padding-right: 12em;
+
+    >div {
+      .logo {
+        display: block;
+      }
+    }
+
+    .save-btn {
+      top: 3px;
+
+      &::after {
+        content: "save file";
+        padding-left: .8em;
+      }
+    }
+
+    .active::after {
+      height: 122%;
+    }
+
+    .long-nav {
+      &::after {
+        content: "";
+        width: 35%;
+        height: 55px;
+      }
+
+      .add-btn {
+        right: 160px;
+      }
+    }
+
+    .doc {
+      width: 150px;
+    }
+
+    .menu-btn {
+      padding-right: 0;
+
+      &::after {
+        display: inline-block;
+      }
+    }
+
+    .menu-btn-mode {
+      background: $main;
+    }
+  }
+
+  .doc {
+    .doc-info {
+      display: flex;
+      flex-direction: column;
+      gap: .3em;
+
+      >span {
+        display: block;
+      }
+    }
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .1em;
+
+    .markdown {
+      grid-column: 1/-1;
+    }
+  }
+
+  .preview {
+    position: initial;
+    translate: initial;
+    z-index: initial;
+    width: initial;
+    background-color: initial;
+    min-height: initial;
+
+    button {
+      display: none;
+    }
+  }
+
+}

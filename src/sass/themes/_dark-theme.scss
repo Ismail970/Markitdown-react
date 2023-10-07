@@ -1,0 +1,107 @@
+@use "../base/base" as *;
+
+$main-bg: #181A1B;
+$main: #2B2F31;
+
+.dark-theme {
+
+  &,
+  #text {
+    background-color: #181A1B;
+  }
+
+  .files-container,
+  .remove-btn,
+  .preview-btn,
+  .save-btn,
+  .markdown header,
+  .preview header,
+  #text,
+  #preview,
+  .menu,
+  .menu i,
+  .add-btn,
+  .logo {
+    color: white;
+  }
+
+  .header {
+    background-color: $main;
+
+    .long-nav {
+      &::after {
+        background-image: linear-gradient(to right, transparent, rgb(0, 0, 0));
+      }
+    }
+
+    .save-btn {
+      background-color: #7F1900;
+
+      &:hover,
+      &:focus {
+        background-color: #a72100;
+      }
+    }
+
+    .active::after {
+      background-color: #1A1C1D;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #868686;
+      border: 0px solid $main;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $main;
+    }
+
+    .add-btn {
+      opacity: .8;
+
+      &:hover,
+      &:focus {
+        opacity: .4;
+      }
+    }
+
+    .menu-btn {
+      color: rgb(223, 223, 223);
+    }
+
+    .menu-btn-mode {
+      background-image: linear-gradient(to right, $main 90%, transparent);
+    }
+  }
+
+
+  .markdown,
+  .preview {
+    header {
+      background-color: #202324;
+    }
+  }
+
+  .preview {
+    background-color: $main-bg;
+  }
+
+  .menu {
+    background-color: $main-bg;
+  }
+
+}
+
+@include media-lg {
+  .dark-theme {
+    .header {
+      .menu-btn-mode {
+        background: $main;
+      }
+
+      .menu-btn::after {
+        border-right: 1px solid rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
