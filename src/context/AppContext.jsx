@@ -97,11 +97,19 @@ export const AppProvider = ({ children }) => {
     const updatedSavedItemIds = savedItems.savedItemIds.filter(
       (id) => id !== idToRemove,
     );
+    const updatedSavedItemTitles = savedItems.savedItemTitles.filter(
+      (id) => id !== idToRemove,
+    );
+    const updatedSavedItemContent = savedItems.savedItemContent.filter(
+      (id) => id !== idToRemove,
+    );
 
     // Update the savedItemIds state with the new array
     setSavedItems((prevSavedItems) => ({
       ...prevSavedItems,
       savedItemIds: updatedSavedItemIds,
+      savedItemTitles: updatedSavedItemTitles,
+      savedItemContent: updatedSavedItemContent,
     }));
   };
 

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import AppContext from "../context/AppContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 
 function HeaderItem({ id, active }) {
@@ -24,7 +24,7 @@ function HeaderItem({ id, active }) {
   return (
     <>
       <li className={`doc ${active ? "active" : ""}`} data-id={id}>
-        <div className='doc-con' onClick={onItemClick}>
+        <div className="doc-con" onClick={onItemClick}>
           <FontAwesomeIcon icon={faFile} className="doc-el" />
 
           <div className="doc-el">

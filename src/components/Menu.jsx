@@ -58,7 +58,8 @@ function Menu() {
         <div className={`menu ${menuVisible ? "show" : ""}`}>
           <div>
             <p>
-              Saved <span id="saved-num">{`(${savedItems.savedItemIds.length})`}</span>
+              Saved{" "}
+              <span id="saved-num">{`(${savedItems.savedItemIds.length})`}</span>
             </p>
             <button className="theme-btn" onClick={toggleTheme}>
               <FontAwesomeIcon icon={themeSwitched ? faSun : faMoon} />
