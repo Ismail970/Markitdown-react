@@ -83,28 +83,6 @@
     align-self: center;
   }
 
-  // .active {
-  //   position: relative;
-  //   cursor: pointer;
-  //   height: 100%;
-
-  //   &::after {
-  //     content: "";
-  //     height: 125%;
-  //     translate: -10px -15px;
-  //     border-radius: 0 0 10px 10px;
-  //     width: 115%;
-  //     background-color: $bars;
-  //     position: absolute;
-  //   }
-
-  //   // overwriting
-  //   &:hover,
-  //   &:focus {
-  //     opacity: 1;
-  //   }
-  // }
-
   .menu-btn {
     margin: 1em;
     z-index: 2;

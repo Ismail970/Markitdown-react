@@ -7,7 +7,7 @@ import AppContext from '../context/AppContext';
 
 function Header() {
 
-  const {itemIds, activeItemId, toggleMenu, handleSaveItem, handleAddItem} = useContext(AppContext)
+  const {items, activeItemId, toggleMenu, handleSaveItem, handleAddNewItem} = useContext(AppContext)
 
   return (
     <>
@@ -19,7 +19,7 @@ function Header() {
           <nav>
             <ul className="docs-nav">
 
-              {itemIds.map((id) => (
+              {items.itemIds.map((id) => (
                 <HeaderItem
                   key={id}
                   id={id}
@@ -28,7 +28,7 @@ function Header() {
               ))}
 
               <li>
-                <button className="add-btn" onClick={handleAddItem}><FontAwesomeIcon icon={faPlus} /></button>
+                <button className="add-btn" onClick={handleAddNewItem}><FontAwesomeIcon icon={faPlus} /></button>
               </li>
             </ul>
           </nav>

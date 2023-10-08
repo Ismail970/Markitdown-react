@@ -72,6 +72,10 @@
     .markdown {
       grid-column: 1/-1;
     }
+
+    .show-preview {
+      grid-column: auto / auto;
+    }
   }
 
   .preview {

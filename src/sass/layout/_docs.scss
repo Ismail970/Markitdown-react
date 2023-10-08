@@ -8,6 +8,10 @@
   cursor: pointer;
   @include transition-ease(opacity);
 
+  .doc-con {
+    gap: .5em;
+  }
+
   &:hover,
   &:focus {
     opacity: .5;
