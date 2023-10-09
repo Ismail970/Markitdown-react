@@ -22,19 +22,26 @@ export const AppProvider = ({ children }) => {
     setActiveItemId(id);
   };
 
-  const updateItemTitle = (id, content) => {
+  const handleInputChange = (e, id) => {
+    const newTitle = e.target.value;
+
+    // Update the title associated with the specific item ID
     setItems((prevItems) => ({
       ...prevItems,
       itemTitles: {
         ...prevItems.itemTitles,
-        [id]: content,
+        [id]: newTitle,
       },
     }));
-  };
 
-  const handleInputChange = (e, id) => {
-    // Update the title associated with the specific item ID
-    updateItemTitle(id, e.target.value);
+    // Update the savedItems with the new title
+    setSavedItems((prevSavedItems) => ({
+      ...prevSavedItems,
+      savedItemTitles: {
+        ...prevSavedItems.savedItemTitles,
+        [activeItemId]: newTitle,
+      },
+    }));
   };
 
   const handleRemoveItem = (idToRemove) => {
@@ -60,9 +67,14 @@ export const AppProvider = ({ children }) => {
     setItems((prevItems) => ({
       ...prevItems,
       itemIds: [...prevItems.itemIds, id],
+      itemTitles: {
+        ...prevItems.itemTitles,
+        [id]: savedItems.savedItemIds.includes(id)
+          ? savedItems.savedItemTitles[id]
+          : `Untitled${id}`,
+      },
     }));
     setActiveItemId(id);
-    updateItemTitle(id, `Untitled${id}`);
     handleUpdateItemContent(id, items.itemContent[id] || "");
   };
 
@@ -72,20 +84,20 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleSaveItem = () => {
-    if (!savedItems.savedItemIds.includes(activeItemId)) {
-      setSavedItems((prevSavedItems) => ({
-        ...prevSavedItems,
-        savedItemIds: [...prevSavedItems.savedItemIds, activeItemId],
-        savedItemTitles: {
-          ...prevSavedItems.savedItemTitles,
-          [activeItemId]: items.itemTitles[activeItemId],
-        },
-        savedItemContent: {
-          ...prevSavedItems.savedItemContent,
-          [activeItemId]: items.itemContent[activeItemId],
-        },
-      }));
-    }
+    setSavedItems((prevSavedItems) => ({
+      ...prevSavedItems,
+      savedItemIds: prevSavedItems.savedItemIds.includes(activeItemId)
+        ? prevSavedItems.savedItemIds // Item already saved, no need to change/add
+        : [...prevSavedItems.savedItemIds, activeItemId],
+      savedItemTitles: {
+        ...prevSavedItems.savedItemTitles,
+        [activeItemId]: items.itemTitles[activeItemId],
+      },
+      savedItemContent: {
+        ...prevSavedItems.savedItemContent,
+        [activeItemId]: items.itemContent[activeItemId],
+      },
+    }));
   };
 
   const toggleMenu = () => {
@@ -93,23 +105,19 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleRemoveSavedItem = (idToRemove) => {
-    // Create a new array without the item to be removed
-    const updatedSavedItemIds = savedItems.savedItemIds.filter(
-      (id) => id !== idToRemove,
-    );
-    const updatedSavedItemTitles = savedItems.savedItemTitles.filter(
-      (id) => id !== idToRemove,
-    );
-    const updatedSavedItemContent = savedItems.savedItemContent.filter(
-      (id) => id !== idToRemove,
-    );
+    const removeFromObject = (ob) => {
+      return Object.fromEntries(
+        Object.entries(ob).filter(([key]) => key !== idToRemove),
+      );
+    };
 
-    // Update the savedItemIds state with the new array
     setSavedItems((prevSavedItems) => ({
       ...prevSavedItems,
-      savedItemIds: updatedSavedItemIds,
-      savedItemTitles: updatedSavedItemTitles,
-      savedItemContent: updatedSavedItemContent,
+      savedItemIds: prevSavedItems.savedItemIds.filter(
+        (id) => id !== idToRemove,
+      ),
+      savedItemTitles: removeFromObject(prevSavedItems.savedItemTitles),
+      savedItemContent: removeFromObject(prevSavedItems.savedItemContent),
     }));
   };
 
@@ -118,6 +126,15 @@ export const AppProvider = ({ children }) => {
       ...prevItems,
       itemContent: {
         ...prevItems.itemContent,
+        [id]: content,
+      },
+    }));
+
+    // Update the savedItems with the new content
+    setSavedItems((prevSavedItems) => ({
+      ...prevSavedItems,
+      savedItemContent: {
+        ...prevSavedItems.savedItemContent,
         [id]: content,
       },
     }));

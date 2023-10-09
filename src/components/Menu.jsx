@@ -67,7 +67,7 @@ function Menu() {
           </div>
           <ul className="docs-nav">
             {savedItems.savedItemIds.map((id) => (
-              <MenuItems key={id} id={id} title={items.itemTitles[id]} />
+              <MenuItems key={id} id={id} title={savedItems.savedItemTitles[id]} />
             ))}
           </ul>
         </div>
@@ -79,7 +79,7 @@ function Menu() {
           <header>
             <p>markdown</p>
             <button className="preview-btn" onClick={togglePreview}>
-              <FontAwesomeIcon icon={!previewVisible ? faEye : faEyeSlash} />
+              {!previewVisible && <FontAwesomeIcon icon={faEye} />}
             </button>
           </header>
 
@@ -94,6 +94,9 @@ function Menu() {
         <section className={`preview ${!previewVisible ? "hide" : ""}`}>
           <header>
             <p>preview</p>
+            <button className="preview-btn" onClick={togglePreview}>
+              {previewVisible && <FontAwesomeIcon icon={faEyeSlash} />}
+            </button>
           </header>
 
           <div
