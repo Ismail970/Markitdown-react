@@ -47,7 +47,9 @@ main {
 }
 
 #preview {
+  box-sizing: content-box;
   padding: 1em 2em;
+  height: 80vh;
   word-break: break-all;
   overflow-x: hidden;
 }
