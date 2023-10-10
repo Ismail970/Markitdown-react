@@ -4,19 +4,15 @@
   .header {
     padding-right: 12em;
 
-    >div {
+    > div {
       .logo {
         display: block;
       }
     }
 
     .save-btn {
-      top: 3px;
-
-      &::after {
-        content: "save file";
-        padding-left: .8em;
-      }
+      display: flex;
+      gap: 0.5em;
     }
 
     .active::after {
@@ -56,9 +52,9 @@
     .doc-info {
       display: flex;
       flex-direction: column;
-      gap: .3em;
+      gap: 0.3em;
 
-      >span {
+      > span {
         display: block;
       }
     }
@@ -67,7 +63,7 @@
   main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: .1em;
+    gap: 0.1em;
 
     .markdown {
       grid-column: 1/-1;
@@ -86,5 +82,4 @@
     background-color: initial;
     min-height: initial;
   }
-
 }

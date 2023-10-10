@@ -1,31 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import MenuItems from "./MenuItems";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
-import { parse } from "marked";
+import Button from "./shared/Button";
+import MarkdownArea from "./MarkdownArea";
 
 function Menu() {
   const {
     items,
     savedItems,
     menuVisible,
-    activeItemId,
-    handleUpdateItemContent,
+    toggleTheme,
+    themeSwitched,
   } = useContext(AppContext);
-
-  const [previewVisible, setPreviewVisible] = useState(false);
-  const [themeSwitched, setThemeSwitched] = useState(false);
-  const [markdownText, setMarkdownText] = useState("");
-
-  const togglePreview = () => {
-    setPreviewVisible(!previewVisible);
-  };
-
-  const toggleTheme = () => {
-    setThemeSwitched(!themeSwitched);
-  };
 
   useEffect(() => {
     if (themeSwitched) {
@@ -40,72 +27,35 @@ function Menu() {
     };
   }, [themeSwitched]);
 
-  useEffect(() => {
-    // Initialize the content based on the active item when the component mounts
-    setMarkdownText(items.itemContent[activeItemId] || "");
-  }, [activeItemId]);
-
-  const handleTextChange = (e) => {
-    const html = parse(e.target.value);
-    setMarkdownText(html);
-
-    handleUpdateItemContent(activeItemId, e.target.value);
-  };
-
   return (
-    <>
-      <main>
-        <div className={`menu ${menuVisible ? "show" : ""}`}>
-          <div>
-            <p>
-              Saved{" "}
-              <span id="saved-num">{`(${savedItems.savedItemIds.length})`}</span>
-            </p>
-            <button className="theme-btn" onClick={toggleTheme}>
-              <FontAwesomeIcon icon={themeSwitched ? faSun : faMoon} />
-            </button>
-          </div>
-          <ul className="docs-nav">
-            {savedItems.savedItemIds.map((id) => (
-              <MenuItems key={id} id={id} title={savedItems.savedItemTitles[id]} />
-            ))}
-          </ul>
+    <main>
+      <div className={`menu ${menuVisible ? "show" : ""}`}>
+        <div>
+          <p>
+            Saved{" "}
+            <span id="saved-num">{`(${savedItems.savedItemIds.length})`}</span>
+          </p>
+          <Button className={"theme-btn"} eventHandler={toggleTheme} fontAwesomeIcon={themeSwitched ? faSun : faMoon}/>
         </div>
-        <section
-          className={`markdown ${!items.itemIds.length ? "hide" : ""} ${
-            previewVisible ? "show-preview" : ""
-          }`}
-        >
-          <header>
-            <p>markdown</p>
-            <button className="preview-btn" onClick={togglePreview}>
-              {!previewVisible && <FontAwesomeIcon icon={faEye} />}
-            </button>
-          </header>
+        <ul className="docs-nav">
+          {savedItems.savedItemIds.length === 0 ? (
+            <p>No file is saved</p>
+          ) : (
+            savedItems.savedItemIds.map((id) => (
+              <MenuItems
+                key={id}
+                id={id}
+                title={savedItems.savedItemTitles[id]}
+              />
+            ))
+          )}
+        </ul>
+      </div>
 
-          <textarea
-            name="text"
-            id="text"
-            onChange={handleTextChange}
-            value={items.itemContent[activeItemId]}
-          ></textarea>
-        </section>
+      {items.itemIds.length === 0 && <p>No file is opened</p>}
 
-        <section className={`preview ${!previewVisible ? "hide" : ""}`}>
-          <header>
-            <p>preview</p>
-            <button className="preview-btn" onClick={togglePreview}>
-              {previewVisible && <FontAwesomeIcon icon={faEyeSlash} />}
-            </button>
-          </header>
-
-          <div
-            id="preview"
-            dangerouslySetInnerHTML={{ __html: markdownText }}
-          ></div>
-        </section>
-      </main>
-    </>
+      <MarkdownArea/>
+    </main>
   );
 }
 

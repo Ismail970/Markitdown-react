@@ -1,22 +1,138 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [items, setItems] = useState({
-    itemIds: [],
-    itemTitles: {},
-    itemContent: {},
-  });
-  const [savedItems, setSavedItems] = useState({
-    savedItemIds: [],
-    savedItemTitles: {},
-    savedItemContent: {},
-  });
-  const [activeItemId, setActiveItemId] = useState(null);
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [state, saveState] = useLocalStorage("state", null);
+
+  const initialState = state || {
+    items: {
+      itemIds: [],
+      itemTitles: {},
+      itemContent: {},
+    },
+    savedItems: {
+      savedItemIds: [],
+      savedItemTitles: {},
+      savedItemContent: {},
+    },
+    activeItemId: null,
+    menuVisible: false,
+    previewVisible: false,
+    themeSwitched: false,
+  };
+
+  const [items, setItems] = useState(initialState.items);
+  const [savedItems, setSavedItems] = useState(initialState.savedItems);
+  const [activeItemId, setActiveItemId] = useState(initialState.activeItemId);
+  const [menuVisible, setMenuVisible] = useState(initialState.menuVisible);
+  const [previewVisible, setPreviewVisible] = useState(
+    initialState.previewVisible,
+  );
+  const [themeSwitched, setThemeSwitched] = useState(
+    initialState.themeSwitched,
+  );
+  const [markdownText, setMarkdownText] = useState("");
+  const [buttonText, setButtonText] = useState("Save File");
+
+  // Save data to local storage whenever the component states change
+  useEffect(() => {
+    saveState({
+      items,
+      savedItems,
+      activeItemId,
+      menuVisible,
+      previewVisible,
+      themeSwitched,
+    });
+  }, [
+    items,
+    savedItems,
+    activeItemId,
+    menuVisible,
+    previewVisible,
+    themeSwitched,
+  ]);
+
+  useEffect(() => {
+    // Check if it's the user's first visit
+    const isFirstVisit = !localStorage.getItem("firstVisit");
+
+    if (isFirstVisit) {
+      // Perform actions for the first visit
+      const newItemKey = uuidv4();
+
+      // Add the new item with the "New Title" and "Hi" content
+      handleAddItem(newItemKey);
+
+      const welcomeContent = `# Hi! ✨ \n Welcome to MarkItDown add a file to start!`;
+      const welcomeTitle = `Welcome! ✨`;
+
+      // Set the title for the newly added item
+      setItems((prevItems) => ({
+        ...prevItems,
+        itemTitles: {
+          ...prevItems.itemTitles,
+          [newItemKey]: welcomeTitle,
+        },
+        itemContent: {
+          ...prevItems.itemContent,
+          [newItemKey]: welcomeContent,
+        },
+      }));
+
+      setSavedItems((prevSavedItems) => ({
+        ...prevSavedItems,
+        savedItemIds: [...prevSavedItems.savedItemIds, newItemKey],
+        savedItemTitles: {
+          ...prevSavedItems.savedItemTitles,
+          [newItemKey]: welcomeTitle,
+        },
+        savedItemContent: {
+          ...prevSavedItems.savedItemContent,
+          [newItemKey]: welcomeContent,
+        },
+      }));
+
+      setPreviewVisible(true);
+
+      // Set a flag in local storage to indicate that the user has visited
+      localStorage.setItem("firstVisit", "false");
+    }
+  }, []);
+
+  // For dev
+  // window.localStorage.clear();
+
+  useEffect(() => {
+    // Initialize the content based on the active item when the component mounts
+    setMarkdownText(items.itemContent[activeItemId] || "");
+    setButtonText("Save File");
+  }, [activeItemId]);
+
+  const handleTextChange = (e) => {
+    setMarkdownText(e.target.value);
+
+    setItems((prevItems) => ({
+      ...prevItems,
+      itemContent: {
+        ...prevItems.itemContent,
+        [activeItemId]: e.target.value || "",
+      },
+    }));
+
+    // Update the savedItems with the new content
+    setSavedItems((prevSavedItems) => ({
+      ...prevSavedItems,
+      savedItemContent: {
+        ...prevSavedItems.savedItemContent,
+        [activeItemId]: e.target.value,
+      },
+    }));
+  };
 
   const handleItemClick = (id) => {
     setActiveItemId(id);
@@ -75,7 +191,13 @@ export const AppProvider = ({ children }) => {
       },
     }));
     setActiveItemId(id);
-    handleUpdateItemContent(id, items.itemContent[id] || "");
+    setItems((prevItems) => ({
+      ...prevItems,
+      itemContent: {
+        ...prevItems.itemContent,
+        [id]: items.itemContent[id] || "",
+      },
+    }));
   };
 
   const handleAddNewItem = () => {
@@ -84,24 +206,41 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleSaveItem = () => {
-    setSavedItems((prevSavedItems) => ({
-      ...prevSavedItems,
-      savedItemIds: prevSavedItems.savedItemIds.includes(activeItemId)
-        ? prevSavedItems.savedItemIds // Item already saved, no need to change/add
-        : [...prevSavedItems.savedItemIds, activeItemId],
-      savedItemTitles: {
-        ...prevSavedItems.savedItemTitles,
-        [activeItemId]: items.itemTitles[activeItemId],
-      },
-      savedItemContent: {
-        ...prevSavedItems.savedItemContent,
-        [activeItemId]: items.itemContent[activeItemId],
-      },
-    }));
+    if (savedItems.savedItemIds.includes(activeItemId)) {
+      // Item is already saved, show "Already saved" temporarily
+      setButtonText("Already Saved!");
+
+      setTimeout(() => {
+        // After 5 seconds, revert back to "Save file"
+        setButtonText("Save File");
+      }, 2000);
+    } else {
+      // Item is not saved, save it
+      setSavedItems((prevSavedItems) => ({
+        ...prevSavedItems,
+        savedItemIds: [...prevSavedItems.savedItemIds, activeItemId],
+        savedItemTitles: {
+          ...prevSavedItems.savedItemTitles,
+          [activeItemId]: items.itemTitles[activeItemId],
+        },
+        savedItemContent: {
+          ...prevSavedItems.savedItemContent,
+          [activeItemId]: items.itemContent[activeItemId],
+        },
+      }));
+    }
   };
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
+  };
+
+  const togglePreview = () => {
+    setPreviewVisible(!previewVisible);
+  };
+
+  const toggleTheme = () => {
+    setThemeSwitched(!themeSwitched);
   };
 
   const handleRemoveSavedItem = (idToRemove) => {
@@ -121,25 +260,6 @@ export const AppProvider = ({ children }) => {
     }));
   };
 
-  const handleUpdateItemContent = (id, content) => {
-    setItems((prevItems) => ({
-      ...prevItems,
-      itemContent: {
-        ...prevItems.itemContent,
-        [id]: content,
-      },
-    }));
-
-    // Update the savedItems with the new content
-    setSavedItems((prevSavedItems) => ({
-      ...prevSavedItems,
-      savedItemContent: {
-        ...prevSavedItems.savedItemContent,
-        [id]: content,
-      },
-    }));
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -147,7 +267,13 @@ export const AppProvider = ({ children }) => {
         savedItems,
         activeItemId,
         menuVisible,
+        previewVisible,
+        themeSwitched,
+        markdownText,
+        buttonText,
         toggleMenu,
+        toggleTheme,
+        togglePreview,
         handleAddNewItem,
         handleAddItem,
         handleItemClick,
@@ -155,7 +281,7 @@ export const AppProvider = ({ children }) => {
         handleRemoveItem,
         handleSaveItem,
         handleRemoveSavedItem,
-        handleUpdateItemContent,
+        handleTextChange,
       }}
     >
       {children}

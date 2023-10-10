@@ -4,26 +4,26 @@
   display: flex;
   justify-content: space-between;
   padding: 0 1em;
-  gap: .5em;
+  gap: 0.5em;
   cursor: pointer;
   @include transition-ease(opacity);
 
   .doc-con {
-    gap: .5em;
+    gap: 0.5em;
   }
 
   &:hover,
   &:focus {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   .remove-btn {
-    opacity: .8;
+    opacity: 0.8;
     @include transition-ease(opacity);
 
     &:hover,
     &:focus {
-      opacity: .3;
+      opacity: 0.3;
     }
   }
 
@@ -34,6 +34,7 @@
     border: none;
     resize: none;
     outline: none;
+    line-height: 1.2;
   }
 
   .doc-el {
@@ -43,6 +44,7 @@
 }
 
 .active {
+  box-sizing: content-box;
   position: relative;
   cursor: pointer;
 

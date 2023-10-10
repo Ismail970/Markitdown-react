@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faFileArrowDown, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import AppContext from "../context/AppContext";
 import { useDownloadFile } from "react-downloadfile-hook";
+import Button from "./shared/Button";
 
 function MenuItems({ id, title }) {
   const {
@@ -37,23 +37,25 @@ function MenuItems({ id, title }) {
   };
 
   return (
-    <>
-      <li className="doc" data-id={id}>
-        <div className="document" onClick={onItemClick}>
-          <FontAwesomeIcon icon={faFile} />
-          <span id="file-name">{title}</span>
-          <p>.md</p>
-        </div>
-        <div className="menu-file-btns">
-          <button className="remove-btn" onClick={onRemoveItem}>
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
-          <button className="download-btn" onClick={downloadFile}>
-            <FontAwesomeIcon icon={faFileArrowDown} />
-          </button>
-        </div>
-      </li>
-    </>
+    <li className="doc" data-id={id}>
+      <div className="document" onClick={onItemClick}>
+        <FontAwesomeIcon icon={faFile} />
+        <span id="file-name">{title}</span>
+        <p>.md</p>
+      </div>
+      <div className="menu-file-btns">
+        <Button
+          className={"remove-btn"}
+          eventHandler={onRemoveItem}
+          fontAwesomeIcon={faXmark}
+        />
+        <Button
+          className={"download-btn"}
+          eventHandler={downloadFile}
+          fontAwesomeIcon={faFileArrowDown}
+        />
+      </div>
+    </li>
   );
 }
 

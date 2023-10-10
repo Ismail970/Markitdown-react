@@ -4,6 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import AppContext from "../context/AppContext";
 import { useContext } from "react";
 import PropTypes from "prop-types";
+import Button from "./shared/Button";
 
 function HeaderItem({ id, active }) {
   const { items, handleRemoveItem, handleItemClick, handleInputChange } =
@@ -22,30 +23,30 @@ function HeaderItem({ id, active }) {
   };
 
   return (
-    <>
-      <li className={`doc ${active ? "active" : ""}`} data-id={id}>
-        <div className="doc-con" onClick={onItemClick}>
-          <FontAwesomeIcon icon={faFile} className="doc-el" />
+    <li className={`doc ${active ? "active" : ""}`} data-id={id}>
+      <div className="doc-con" onClick={onItemClick}>
+        <FontAwesomeIcon icon={faFile} className="doc-el" />
 
-          <div className="doc-el">
-            <textarea
-              className="transparent-textarea"
-              defaultValue={items.itemTitles[id]}
-              onChange={onInputChange}
-              rows="1"
-              wrap="off"
-              maxLength="19"
-            ></textarea>
+        <div className="doc-el">
+          <textarea
+            className="transparent-textarea"
+            defaultValue={items.itemTitles[id]}
+            onChange={onInputChange}
+            rows="1"
+            wrap="off"
+            maxLength="19"
+          ></textarea>
 
-            <span>.md</span>
-          </div>
+          <span>.md</span>
         </div>
+      </div>
 
-        <button className="remove-btn doc-el" onClick={onRemoveItem}>
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
-      </li>
-    </>
+      <Button
+        className={"remove-btn doc-el"}
+        eventHandler={onRemoveItem}
+        fontAwesomeIcon={faXmark}
+      />
+    </li>
   );
 }
 
