@@ -13,6 +13,10 @@
     .save-btn {
       display: flex;
       gap: 0.5em;
+
+      p {
+      display: initial;
+    }
     }
 
     .active::after {

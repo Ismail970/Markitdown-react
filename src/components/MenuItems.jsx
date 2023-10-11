@@ -24,6 +24,8 @@ function MenuItems({ id, title }) {
     data: fileData,
   });
 
+  const truncatedTitle = title.length > 15 ? title.slice(0, 15) + "..." : title;
+
   const onRemoveItem = () => {
     handleRemoveSavedItem(id);
   };
@@ -40,7 +42,7 @@ function MenuItems({ id, title }) {
     <li className="doc" data-id={id}>
       <div className="document" onClick={onItemClick}>
         <FontAwesomeIcon icon={faFile} />
-        <span id="file-name">{title}</span>
+        <span id="file-name">{truncatedTitle}</span>
         <p>.md</p>
       </div>
       <div className="menu-file-btns">

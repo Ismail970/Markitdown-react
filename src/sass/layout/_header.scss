@@ -17,10 +17,6 @@
   }
 
   nav {
-    // display: flex;
-    // align-items: center;
-    // padding-right: .5em;
-
     ul {
       height: 100%;
       display: flex;
@@ -65,11 +61,14 @@
     &:focus {
       background-color: #ffb6a3;
     }
+
+    p {
+    display: none;
+  }
   }
 
   .add-btn {
     padding: .1em;
-    // margin-left: 1em;
     opacity: .3;
     @include transition-ease(opacity);
 
@@ -118,14 +117,4 @@
   &::-webkit-scrollbar {
     height: 5px;
   }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background-color: #b3b3b3;
-  //   border-radius: 10px;
-  //   border: 0px solid $main;
-  // }
-
-  // &::-webkit-scrollbar-track {
-  //   background-color: $main;
-  // }
 }

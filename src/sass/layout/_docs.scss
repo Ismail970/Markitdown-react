@@ -35,6 +35,7 @@
     resize: none;
     outline: none;
     line-height: 1.2;
+    -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
   }
 
   .doc-el {

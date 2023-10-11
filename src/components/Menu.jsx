@@ -39,7 +39,7 @@ function Menu() {
         </div>
         <ul className="docs-nav">
           {savedItems.savedItemIds.length === 0 ? (
-            <p>No file is saved</p>
+            <p className="no-file-save-msg">No file is saved</p>
           ) : (
             savedItems.savedItemIds.map((id) => (
               <MenuItems
@@ -52,7 +52,7 @@ function Menu() {
         </ul>
       </div>
 
-      {items.itemIds.length === 0 && <p>No file is opened</p>}
+      {items.itemIds.length === 0 && <p className="no-file-open-msg">No file is opened</p>}
 
       <MarkdownArea/>
     </main>

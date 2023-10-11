@@ -216,18 +216,20 @@ export const AppProvider = ({ children }) => {
       }, 2000);
     } else {
       // Item is not saved, save it
-      setSavedItems((prevSavedItems) => ({
-        ...prevSavedItems,
-        savedItemIds: [...prevSavedItems.savedItemIds, activeItemId],
-        savedItemTitles: {
-          ...prevSavedItems.savedItemTitles,
-          [activeItemId]: items.itemTitles[activeItemId],
-        },
-        savedItemContent: {
-          ...prevSavedItems.savedItemContent,
-          [activeItemId]: items.itemContent[activeItemId],
-        },
-      }));
+      if (items.itemIds.length !== 0) {
+        setSavedItems((prevSavedItems) => ({
+          ...prevSavedItems,
+          savedItemIds: [...prevSavedItems.savedItemIds, activeItemId],
+          savedItemTitles: {
+            ...prevSavedItems.savedItemTitles,
+            [activeItemId]: items.itemTitles[activeItemId],
+          },
+          savedItemContent: {
+            ...prevSavedItems.savedItemContent,
+            [activeItemId]: items.itemContent[activeItemId],
+          },
+        }));
+      }
     }
   };
 

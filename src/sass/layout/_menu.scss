@@ -9,7 +9,7 @@
   min-width: 200px;
   z-index: 2;
 
-  >div {
+  > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,8 +18,8 @@
       padding: 1em;
 
       #saved-num {
-        margin-left: .2em;
-        opacity: .6;
+        margin-left: 0.2em;
+        opacity: 0.6;
       }
     }
 
@@ -29,16 +29,17 @@
 
     .theme-btn {
       @include transition-ease(opacity);
+      padding: 1em;
 
       &:hover,
       &:focus {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
   }
 
   .doc {
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     justify-content: space-between;
 
     .menu-file-btns {
@@ -50,7 +51,7 @@
 
         &:hover,
         &:focus {
-          opacity: .5;
+          opacity: 0.5;
         }
       }
     }
@@ -59,16 +60,30 @@
       display: flex;
 
       #file-name {
-        max-width: auto;
-        min-width: auto;
-        padding-left: .5em;
+        padding-left: 0.5em;
       }
     }
   }
 
   .docs-nav {
     flex-direction: column-reverse;
+
+    .no-file-save-msg {
+      position: fixed;
+      opacity: 0.8;
+      color: grey;
+      transform: translate(40%, 50%);
+    }
   }
+}
+
+.no-file-open-msg {
+  position: fixed;
+  opacity: 0.8;
+  color: grey;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .show {

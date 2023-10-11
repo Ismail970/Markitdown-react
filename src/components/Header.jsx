@@ -6,14 +6,20 @@ import AppContext from "../context/AppContext";
 import Button from "./shared/Button";
 
 function Header() {
-  const { items, activeItemId, buttonText, toggleMenu, handleSaveItem, handleAddNewItem } =
-    useContext(AppContext);
+  const {
+    items,
+    activeItemId,
+    buttonText,
+    toggleMenu,
+    handleSaveItem,
+    handleAddNewItem,
+  } = useContext(AppContext);
 
   return (
     <header className="header">
       <div>
         <Button
-          className={"menu-btn"}
+          className={'menu-btn menu-btn-mode'}
           eventHandler={toggleMenu}
           fontAwesomeIcon={faBars}
           fontAwesomeClassName="btn-icon"
