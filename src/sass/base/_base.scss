@@ -22,14 +22,17 @@
   }
 }
 
-.active::after {
+.list-item--active {
+  &::after {
   -webkit-animation: fade 1s;
   animation: fade 1s;
 }
+}
 
-.markdown,
-.preview,
-.document-container {
+.section-markdown,
+.section-preview,
+.saved-list-item,
+.list-item {
   -webkit-animation: fade 500ms;
   animation: fade 500ms;
 }
@@ -70,58 +73,3 @@ body {
   font-family: 'Rubik', sans-serif;
   overflow: hidden;
 }
-
-// textarea {
-//   cursor: auto;
-// }
-
-// .header {
-//   .menu-btn::after {
-//     font-size: 1.2rem;
-//     letter-spacing: 3;
-//     text-transform: uppercase;
-//   }
-
-//   .doc-info {
-//     >span {
-//       text-transform: capitalize;
-//       font-size: .8em;
-//     }
-//   }
-
-//   .remove-btn {
-//     font-size: .7rem;
-//   }
-// }
-
-// .menu {
-//   >div {
-//     p {
-//       #saved-num {
-//         font-size: .8rem;
-//       }
-
-//       i {
-//         color: black;
-//         font-size: 1.2rem;
-//       }
-//     }
-//   }
-// }
-
-// @include media-lg {
-//   .header {
-//     .save-btn::after {
-//       text-transform: capitalize;
-//       font-size: .9em;
-//     }
-//   }
-
-//   .document-container {
-//     .document {
-//       .fa-file {
-//         font-size: 1.2rem;
-//       }
-//     }
-//   }
-// }
