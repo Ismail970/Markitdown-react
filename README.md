@@ -1,6 +1,6 @@
 # MarkItDown
 
-- [Demo](https://i-markitdown.netlify.app/)
+- [Demo](https://markitdown-react-i.netlify.app/)
 
 ## Screenshot
 
