@@ -13,40 +13,40 @@ function Header() {
     toggleMenu,
     handleSaveItem,
     handleAddNewItem,
+    headerRef,
   } = useContext(AppContext);
 
   return (
-    <header className="header">
-      <div>
+    <header ref={headerRef} className="header">
+      <div className="header__container">
         <Button
-          className={'menu-btn menu-btn-mode'}
+          className={"header__btn-menu"}
           eventHandler={toggleMenu}
           fontAwesomeIcon={faBars}
-          fontAwesomeClassName="btn-icon"
+          fontAwesomeClassName="btn-menu-icon"
         />
         <nav>
-          <ul className="docs-nav">
+          <ul className="header__nav-items">
             {items.itemIds.map((id) => (
               <HeaderItem key={id} id={id} active={id === activeItemId} />
             ))}
-
-            <li>
-              <Button
-                className={"add-btn"}
-                eventHandler={handleAddNewItem}
-                fontAwesomeIcon={faPlus}
-              />
-            </li>
           </ul>
         </nav>
       </div>
 
-      <Button
-        className={"save-btn"}
-        eventHandler={handleSaveItem}
-        fontAwesomeIcon={faFloppyDisk}
-        btnText={buttonText}
-      />
+      <div className="header__btns-container">
+        <Button
+          className="header__btn-add"
+          eventHandler={handleAddNewItem}
+          fontAwesomeIcon={faPlus}
+        />
+        <Button
+          className={"header__btn-save"}
+          eventHandler={handleSaveItem}
+          fontAwesomeIcon={faFloppyDisk}
+          btnText={buttonText}
+        />
+      </div>
     </header>
   );
 }

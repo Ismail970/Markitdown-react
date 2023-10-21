@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -23,6 +23,7 @@ export const AppProvider = ({ children }) => {
     menuVisible: false,
     previewVisible: false,
     themeSwitched: false,
+    isHeaderTooWide:false,
   };
 
   const [items, setItems] = useState(initialState.items);
@@ -37,6 +38,9 @@ export const AppProvider = ({ children }) => {
   );
   const [markdownText, setMarkdownText] = useState("");
   const [buttonText, setButtonText] = useState("Save File");
+  const [isHeaderTooWide, setIsHeaderTooWide] = useState(initialState.isHeaderTooWide);
+
+  const headerRef = useRef(null);
 
   // Save data to local storage whenever the component states change
   useEffect(() => {
@@ -47,6 +51,7 @@ export const AppProvider = ({ children }) => {
       menuVisible,
       previewVisible,
       themeSwitched,
+      isHeaderTooWide,
     });
   }, [
     items,
@@ -55,6 +60,7 @@ export const AppProvider = ({ children }) => {
     menuVisible,
     previewVisible,
     themeSwitched,
+    isHeaderTooWide,
   ]);
 
   useEffect(() => {
@@ -134,6 +140,14 @@ export const AppProvider = ({ children }) => {
     }));
   };
 
+  const headerWidthCheck = () => {
+    const options = {
+        left: headerRef.current.scrollWidth,
+        behavior: "smooth",
+      };
+    isHeaderTooWide && headerRef.current.scroll(options);
+  };
+
   const handleItemClick = (id) => {
     setActiveItemId(id);
   };
@@ -177,6 +191,9 @@ export const AppProvider = ({ children }) => {
         return items.itemIds[indexOfActive];
       }
     });
+
+    setIsHeaderTooWide(headerRef.current.scrollWidth > headerRef.current.offsetWidth);
+    headerWidthCheck()
   };
 
   const handleAddItem = (id) => {
@@ -198,6 +215,9 @@ export const AppProvider = ({ children }) => {
         [id]: items.itemContent[id] || "",
       },
     }));
+
+    setIsHeaderTooWide(headerRef.current.scrollWidth > headerRef.current.offsetWidth);
+    headerWidthCheck()
   };
 
   const handleAddNewItem = () => {
@@ -273,6 +293,8 @@ export const AppProvider = ({ children }) => {
         themeSwitched,
         markdownText,
         buttonText,
+        isHeaderTooWide,
+        headerRef,
         toggleMenu,
         toggleTheme,
         togglePreview,

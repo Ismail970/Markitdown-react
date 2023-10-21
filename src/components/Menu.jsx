@@ -1,61 +1,49 @@
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import MenuItems from "./MenuItems";
+import MenuItem from "./MenuItem";
 import { useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
 import Button from "./shared/Button";
-import MarkdownArea from "./MarkdownArea";
 
 function Menu() {
-  const {
-    items,
-    savedItems,
-    menuVisible,
-    toggleTheme,
-    themeSwitched,
-  } = useContext(AppContext);
+  const { savedItems, menuVisible, toggleTheme, themeSwitched } =
+    useContext(AppContext);
 
   useEffect(() => {
     if (themeSwitched) {
-      document.body.classList.add("dark-theme");
+      document.body.classList.add("body--theme-dark");
     } else {
-      document.body.classList.remove("dark-theme");
+      document.body.classList.remove("body--theme-dark");
     }
 
     // Cleanup: remove the class when the component unmounts
     return () => {
-      document.body.classList.remove("dark-theme");
+      document.body.classList.remove("body--theme-dark");
     };
   }, [themeSwitched]);
 
   return (
-    <main>
-      <div className={`menu ${menuVisible ? "show" : ""}`}>
-        <div>
-          <p>
-            Saved{" "}
-            <span id="saved-num">{`(${savedItems.savedItemIds.length})`}</span>
-          </p>
-          <Button className={"theme-btn"} eventHandler={toggleTheme} fontAwesomeIcon={themeSwitched ? faSun : faMoon}/>
-        </div>
-        <ul className="docs-nav">
-          {savedItems.savedItemIds.length === 0 ? (
-            <p className="no-file-save-msg">No file is saved</p>
-          ) : (
-            savedItems.savedItemIds.map((id) => (
-              <MenuItems
-                key={id}
-                id={id}
-                title={savedItems.savedItemTitles[id]}
-              />
-            ))
-          )}
-        </ul>
+    <div className={`menu ${menuVisible ? "menu--show" : ""}`}>
+      <div className="menu__header">
+        <p>
+          Saved
+          <span id="menu__items-num">{` (${savedItems.savedItemIds.length})`}</span>
+        </p>
+        <Button
+          className={"menu__btn-theme-switch"}
+          eventHandler={toggleTheme}
+          fontAwesomeIcon={themeSwitched ? faSun : faMoon}
+        />
       </div>
-
-      {items.itemIds.length === 0 && <p className="no-file-open-msg">No file is opened</p>}
-
-      <MarkdownArea/>
-    </main>
+      <ul className="menu__list-items">
+        {savedItems.savedItemIds.length === 0 ? (
+          <p className="menu__list-alert">No file is saved</p>
+        ) : (
+          savedItems.savedItemIds.map((id) => (
+            <MenuItem key={id} id={id} title={savedItems.savedItemTitles[id]} />
+          ))
+        )}
+      </ul>
+    </div>
   );
 }
 

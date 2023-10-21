@@ -2,59 +2,60 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   background-color: $main;
+  align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-right: 5em;
+  justify-content: space-between;
+  // padding-right: 10em;
+  // position: relative;
 
-  div {
+  // &::-webkit-scrollbar-thumb {
+  //   background-color: #b3b3b3;
+  //   border-radius: 10px;
+  //   border: 0px solid $main;
+  //   width: 8px;
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //   background-color: $main;
+  // }
+
+  &__container {
     display: flex;
+    gap: 0.5em;
+
   }
 
-  >div {
-    gap: .5em;
+  &__nav-items {
+    display: flex;
+    gap: 1em;
+    height: 100%;
   }
 
-  nav {
-    ul {
-      height: 100%;
-      display: flex;
-      gap: .5em;
+  &__btn-menu {
+    z-index: 2;
+    display: flex;
+    padding: 1em;
+    gap: 1em;
+    position: sticky;
+    left: 0;
+    background-image: linear-gradient(to right, $main 93%, transparent);
+    
+    .btn-menu-icon {
+      @include transition-ease(rotate);
+    }
+
+    &:hover .btn-icon,
+    &:focus .btn-icon {
+      rotate: 90deg;
     }
   }
 
-  .long-nav {
-    &::after {
-      content: "";
-      width: 25%;
-      height: 51px;
-      right: 0;
-      top: 0;
-      background-image: linear-gradient(to right, transparent, rgb(75, 75, 75));
-      position: absolute;
-    }
-
-    .add-btn {
-      position: absolute;
-      right: 55px;
-      top: 16px;
-      color: white;
-      border-radius: 5px;
-      z-index: 1;
-      opacity: 1;
-    }
-  }
-
-  .save-btn {
-    position: absolute;
+  &__btn-save {
     background-color: #ff9980;
     border-radius: 4px;
-    padding: .5em;
-    margin: .5em;
-    right: 5px;
-    top: -1px;
-    z-index: 1;
+    padding: 0.5em;
     @include transition-ease(background-color);
 
     &:hover,
@@ -63,58 +64,33 @@
     }
 
     p {
-    display: none;
-  }
+      display: none;
+    }
   }
 
-  .add-btn {
-    padding: .1em;
-    opacity: .3;
+  &__btn-add {
+    padding-left: 1em;
+    opacity: 0.3;
     @include transition-ease(opacity);
 
     &:hover,
     &:focus {
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 
-  ul li:last-child {
-    align-self: center;
-  }
-
-  .menu-btn {
-    margin: 1em;
+  &__btns-container {
+    // position: absolute;
+    // align-self: stretch;
+    // align-items: center;
+    // height: 100%;
     z-index: 2;
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    &::after {
-      content: "markitdown";
-      opacity: .8;
-      display: none;
-      border-right: 1px solid rgba(0, 0, 0, 0.4);
-      padding: 0 1em
-    }
-
-    .btn-icon {
-      @include transition-ease(rotate);
-    }
-    
-    &:hover .btn-icon,
-    &:focus .btn-icon {
-      rotate: 90deg;
-    }
-  }
-
-  .menu-btn-mode {
-    position: -webkit-sticky;
     position: sticky;
-    left: 0;
-    background-image: linear-gradient(to right, $main 90%, transparent);
-  }
-
-  &::-webkit-scrollbar {
-    height: 5px;
+    right: 0;
+    display: flex;
+    gap: 1em;
+    padding-right: 0.5em;
+    background-color: $main;
+    background: linear-gradient(90deg, transparent 0%, $main 8%);
   }
 }

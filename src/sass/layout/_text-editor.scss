@@ -1,0 +1,126 @@
+@use "../base/base" as *;
+
+.main {
+  position: relative;
+
+  &__alert {
+    position: fixed;
+    opacity: 0.8;
+    color: grey;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.section-markdown,
+.section-preview {
+  header {
+    background-color: $bars;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &--hide {
+    display: none;
+  }
+
+  &__text {
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+  }
+
+  &__btn-preview {
+    @include transition-ease(opacity);
+
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
+  }
+}
+
+.section-markdown__text,
+.section-preview__text,
+.header {
+  &::-webkit-scrollbar-thumb {
+    background-color: #b3b3b3;
+    border-radius: 10px;
+    border: 0px solid $main;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $main;
+  }
+}
+
+.section-markdown {
+  &__text {
+    width: 100%;
+    resize: none;
+    border: 0;
+    outline: none;
+    padding: 1em 1em 0 1em;
+    overflow-y: auto;
+    max-height: 85vh;
+  }
+}
+
+.section-preview {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: white;
+  min-height: 100vh;
+
+  &__text {
+    line-height: 1.4;
+    padding: 1em;
+    overflow-y: auto;
+    height: 85vh;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding-bottom: 0.5em;
+    }
+
+    h1:not(h1:first-child),
+    h2:not(h2:first-child),
+    h3:not(h3:first-child),
+    h4:not(h4:first-child),
+    h5:not(h5:first-child),
+    h6:not(h6:first-child) {
+      padding-top: 1em;
+    }
+
+    ul,
+    ol {
+      list-style: auto;
+      padding: .5em 0 .5em 1.5em;
+    }
+
+    img,
+    picture {
+      max-width: 100%;
+      padding-bottom: .5em;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      padding: 1em 0;
+      padding-left: 1em;
+    }
+
+    address {
+      font-style: auto;
+    }
+  }
+}

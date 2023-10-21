@@ -1,0 +1,71 @@
+@use "../base/base" as *;
+
+.list-item {
+  display: flex;
+  gap: 0.5em;
+  cursor: pointer;
+  @include transition-ease(opacity);
+
+  * {
+    z-index: 1;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    @include transition-ease(opacity);
+
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__textarea {
+    cursor: pointer;
+    width: 70px;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    line-height: 1.2; // For emojis
+    -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+    mask-image: linear-gradient(90deg, #000 60%, transparent);
+
+    &:focus {
+      cursor: auto;
+    }
+  }
+
+  &__btn-remove {
+    opacity: 0.6;
+    @include transition-ease(opacity);
+
+    &:hover,
+    &:focus {
+      opacity: 0.3;
+    }
+  }
+
+  &--active {
+    position: relative;
+    margin: 0 1em;
+
+    &::after {
+      content: "";
+      height: 85%;
+      border-radius: 0 0 10px 10px;
+      width: 115%;
+      translate: -12px 0;
+      background-color: $bars;
+      position: absolute;
+    }
+  }
+}

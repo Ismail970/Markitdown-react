@@ -23,13 +23,13 @@ function HeaderItem({ id, active }) {
   };
 
   return (
-    <li className={`doc ${active ? "active" : ""}`} data-id={id}>
-      <div className="doc-con" onClick={onItemClick}>
-        <FontAwesomeIcon icon={faFile} className="doc-el" />
+    <li className={`list-item ${active ? "list-item--active" : ""}`}>
+      <div className="list-item__container" onClick={onItemClick}>
+        <FontAwesomeIcon icon={faFile} />
 
-        <div className="doc-el">
+        <div className="list-item__title">
           <textarea
-            className="transparent-textarea"
+            className="list-item__textarea"
             defaultValue={items.itemTitles[id]}
             onChange={onInputChange}
             rows="1"
@@ -42,7 +42,7 @@ function HeaderItem({ id, active }) {
       </div>
 
       <Button
-        className={"remove-btn doc-el"}
+        className={"list-item__btn-remove"}
         eventHandler={onRemoveItem}
         fontAwesomeIcon={faXmark}
       />

@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import AppContext from "../../context/AppContext";
 
 function Button({
   className,
@@ -8,9 +10,12 @@ function Button({
   fontAwesomeClassName = "",
   btnText,
 }) {
+
+  const {themeSwitched} = useContext(AppContext)
+
   return (
     <button className={className} onClick={eventHandler}>
-      <FontAwesomeIcon icon={fontAwesomeIcon} className={fontAwesomeClassName} />
+      <FontAwesomeIcon icon={fontAwesomeIcon} className={`${fontAwesomeClassName} ${themeSwitched ? "fontAwesomeIcon--theme-dark" : ""}`} />
       {btnText && <p>{btnText}</p>}
     </button>
   );

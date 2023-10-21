@@ -1,12 +1,12 @@
 import Header from "./components/Header";
-import Menu from "./components/Menu";
+import Main from "./components/Main";
 import { AppProvider } from "./context/AppContext";
 
 function App() {
   return (
     <AppProvider>
       <Header />
-      <Menu />
+      <Main />
     </AppProvider>
   );
 }

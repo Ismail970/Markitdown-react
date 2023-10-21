@@ -9,83 +9,39 @@
   min-width: 200px;
   z-index: 2;
 
-  > div {
+  &--show {
+    left: 0;
+  }
+
+  &__items-num {
+    margin-left: 0.2em;
+    opacity: 0.6;
+  }
+
+  &__btn-theme-switch {
+    @include transition-ease(opacity);
+    padding: 1em;
+
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
+  }
+
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     p {
       padding: 1em;
-
-      #saved-num {
-        margin-left: 0.2em;
-        opacity: 0.6;
-      }
-    }
-
-    i {
-      padding-right: 1em;
-    }
-
-    .theme-btn {
-      @include transition-ease(opacity);
-      padding: 1em;
-
-      &:hover,
-      &:focus {
-        opacity: 0.5;
-      }
     }
   }
 
-  .doc {
-    padding: 0.5em 1em;
-    justify-content: space-between;
-
-    .menu-file-btns {
-      display: flex;
-      gap: 1em;
-
-      .download-btn {
-        @include transition-ease(opacity);
-
-        &:hover,
-        &:focus {
-          opacity: 0.5;
-        }
-      }
-    }
-
-    .document {
-      display: flex;
-
-      #file-name {
-        padding-left: 0.5em;
-      }
-    }
+  &__list-alert {
+    position: fixed;
+    opacity: 0.8;
+    color: grey;
+    transform: translate(40%, 50%);
   }
-
-  .docs-nav {
-    flex-direction: column-reverse;
-
-    .no-file-save-msg {
-      position: fixed;
-      opacity: 0.8;
-      color: grey;
-      transform: translate(40%, 50%);
-    }
-  }
-}
-
-.no-file-open-msg {
-  position: fixed;
-  opacity: 0.8;
-  color: grey;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.show {
-  left: 0;
 }

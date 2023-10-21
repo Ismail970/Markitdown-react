@@ -1,0 +1,114 @@
+@use "../base/base" as *;
+
+$main-bg: #181a1b;
+$main: #2b2f31;
+
+.body--theme-dark {
+  &,
+  .section-markdown__text {
+    background-color: #181a1b;
+  }
+
+  .header__container,
+  .header__btn-remove,
+  .header__btn-save,
+  .header__btn-add,
+  .menu,
+  .section-preview__btn-preview,
+  .section-markdown header,
+  .section-preview header,
+  .section-markdown__text,
+  .section-preview__text,
+  .fontAwesomeIcon--theme-dark {
+    color: white;
+  }
+
+  .section-markdown__text,
+  .section-preview__text,
+  .header {
+    &::-webkit-scrollbar-thumb {
+      background-color: #868686;
+      border: 0px solid $main;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: $main;
+    }
+  }
+
+  .header {
+    background-color: $main;
+
+    &__btns-container {
+      background-color: $main;
+      background: linear-gradient(90deg, transparent 0%, $main 8%);
+    }
+
+    &__btn-save {
+      background-color: #7f1900;
+
+      &:hover,
+      &:focus {
+        background-color: #a72100;
+      }
+    }
+
+    &__btn-add {
+      opacity: 0.8;
+
+      &:hover,
+      &:focus {
+        opacity: 0.4;
+      }
+    }
+
+    &__btn-menu {
+      color: rgb(223, 223, 223);
+      background-image: linear-gradient(to right, $main 93%, transparent);
+
+      &::after {
+        border-right: 1px solid rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+
+  .section-markdown,
+  .section-preview {
+    header {
+      background-color: #202324;
+    }
+  }
+
+  .section-preview {
+    background-color: $main-bg;
+  }
+
+  .menu {
+    background-color: $main-bg;
+  }
+
+  .list-item {
+    &--active {
+      &::after {
+        background-color: #1a1c1d;
+      }
+    }
+
+    &__textarea {
+      color: white;
+    }
+  }
+}
+
+@include media-lg {
+  .body--theme-dark {
+    .header {
+      .menu-btn {
+        &::after {
+          background: $main;
+          border-right: 1px solid rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+}

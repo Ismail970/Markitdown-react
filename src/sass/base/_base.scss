@@ -40,8 +40,20 @@
   transition: $target 350ms ease;
 }
 
+@mixin media-xs {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
 @mixin media-lg {
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media (min-width: 1440px) {
     @content;
   }
 }
@@ -52,64 +64,64 @@ $main: #dddddd;
 
 $bars: #f1f1f1;
 
-// Base
+// Typography
 
 body {
   font-family: 'Rubik', sans-serif;
   overflow: hidden;
 }
 
-textarea {
-  cursor: auto;
-}
+// textarea {
+//   cursor: auto;
+// }
 
-.header {
-  .menu-btn::after {
-    font-size: 1.2rem;
-    letter-spacing: 3;
-    text-transform: uppercase;
-  }
+// .header {
+//   .menu-btn::after {
+//     font-size: 1.2rem;
+//     letter-spacing: 3;
+//     text-transform: uppercase;
+//   }
 
-  .doc-info {
-    >span {
-      text-transform: capitalize;
-      font-size: .8em;
-    }
-  }
+//   .doc-info {
+//     >span {
+//       text-transform: capitalize;
+//       font-size: .8em;
+//     }
+//   }
 
-  .remove-btn {
-    font-size: .7rem;
-  }
-}
+//   .remove-btn {
+//     font-size: .7rem;
+//   }
+// }
 
-.menu {
-  >div {
-    p {
-      #saved-num {
-        font-size: .8rem;
-      }
+// .menu {
+//   >div {
+//     p {
+//       #saved-num {
+//         font-size: .8rem;
+//       }
 
-      i {
-        color: black;
-        font-size: 1.2rem;
-      }
-    }
-  }
-}
+//       i {
+//         color: black;
+//         font-size: 1.2rem;
+//       }
+//     }
+//   }
+// }
 
-@include media-lg {
-  .header {
-    .save-btn::after {
-      text-transform: capitalize;
-      font-size: .9em;
-    }
-  }
+// @include media-lg {
+//   .header {
+//     .save-btn::after {
+//       text-transform: capitalize;
+//       font-size: .9em;
+//     }
+//   }
 
-  .document-container {
-    .document {
-      .fa-file {
-        font-size: 1.2rem;
-      }
-    }
-  }
-}
+//   .document-container {
+//     .document {
+//       .fa-file {
+//         font-size: 1.2rem;
+//       }
+//     }
+//   }
+// }

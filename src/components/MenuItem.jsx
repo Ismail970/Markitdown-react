@@ -7,7 +7,7 @@ import AppContext from "../context/AppContext";
 import { useDownloadFile } from "react-downloadfile-hook";
 import Button from "./shared/Button";
 
-function MenuItems({ id, title }) {
+function MenuItem({ id, title }) {
   const {
     handleRemoveSavedItem,
     handleItemClick,
@@ -39,20 +39,20 @@ function MenuItems({ id, title }) {
   };
 
   return (
-    <li className="doc" data-id={id}>
-      <div className="document" onClick={onItemClick}>
+    <li className="saved-list-item">
+      <div className="saved-list-item__title" onClick={onItemClick}>
         <FontAwesomeIcon icon={faFile} />
-        <span id="file-name">{truncatedTitle}</span>
+        <span>{truncatedTitle}</span>
         <p>.md</p>
       </div>
-      <div className="menu-file-btns">
+      <div className="saved-list-item__btns-container">
         <Button
-          className={"remove-btn"}
+          className={"list-item__btn-remove"}
           eventHandler={onRemoveItem}
           fontAwesomeIcon={faXmark}
         />
         <Button
-          className={"download-btn"}
+          className={"saved-list-item__btn-download"}
           eventHandler={downloadFile}
           fontAwesomeIcon={faFileArrowDown}
         />
@@ -61,9 +61,9 @@ function MenuItems({ id, title }) {
   );
 }
 
-MenuItems.propTypes = {
+MenuItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default MenuItems;
+export default MenuItem;

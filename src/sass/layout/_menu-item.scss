@@ -1,0 +1,31 @@
+@use "../base/base" as *;
+
+.saved-list-item {
+  padding: 1em 1em 0 1em;
+  justify-content: space-between;
+  display: flex;
+  gap: 1em;
+
+  &__btns-container {
+    display: flex;
+    gap: 0.5em;
+  }
+
+  &__btn-download {
+    @include transition-ease(opacity);
+
+    &:hover,
+    &:focus {
+      opacity: 0.5;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    span {
+      padding-left: .5em;
+    }
+  }
+}

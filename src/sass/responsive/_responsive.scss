@@ -1,0 +1,42 @@
+@use "../base/base" as *;
+
+@include media-lg {
+  .header {
+    &__btn-menu {
+      &::after {
+        content: "markitdown";
+        opacity: 0.8;
+        text-transform: uppercase;
+        border-right: 1px solid rgba(0, 0, 0, 0.4);
+        padding: 0 1em 0 0;
+      }
+    }
+
+    &__btn-save {
+      display: flex;
+      gap: 0.5em;
+
+      p {
+        display: initial;
+      }
+    }
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.1em;
+  }
+
+  .section-markdown {
+    grid-column: 1/-1;
+
+    &__preview--show {
+      grid-column: auto / auto;
+    }
+  }
+
+  .section-preview {
+    grid-column: 2 / -1;
+  }
+}

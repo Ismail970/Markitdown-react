@@ -68,15 +68,15 @@ function MarkdownArea() {
   return (
     <>
       <section
-        className={`markdown ${!items.itemIds.length ? "hide" : ""} ${
-          previewVisible ? "show-preview" : ""
+        className={`section-markdown ${!items.itemIds.length ? "section-markdown--hide" : ""} ${
+          previewVisible ? "section-markdown__preview--show" : ""
         }`}
       >
         <header>
           <p>markdown</p>
           {!previewVisible && (
             <Button
-              className={"preview-btn"}
+              className={"section-markdown__btn-preview"}
               eventHandler={togglePreview}
               fontAwesomeIcon={faEye}
             />
@@ -85,7 +85,7 @@ function MarkdownArea() {
 
         <TextareaAutosize
           name="text"
-          id="text"
+          class="section-markdown__text"
           onChange={handleTextChange}
           value={items.itemContent[activeItemId]}
           ref={textAreaRef}
@@ -93,22 +93,22 @@ function MarkdownArea() {
       </section>
 
       <section
-        className={`preview ${
-          !previewVisible || !items.itemIds.length ? "hide" : ""
+        className={`section-preview ${
+          !previewVisible || !items.itemIds.length ? "section-preview--hide" : ""
         }`}
       >
         <header>
           <p>preview</p>
           {previewVisible && (
             <Button
-              className={"preview-btn"}
+              className={"section-preview__btn-preview"}
               eventHandler={togglePreview}
               fontAwesomeIcon={faEyeSlash}
             />
           )}
         </header>
 
-        <div id="preview" ref={previewRef}>
+        <div class="section-preview__text" ref={previewRef}>
           <ReactMarkdown>{markdownText}</ReactMarkdown>
         </div>
       </section>

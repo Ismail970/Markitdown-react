@@ -1,8 +1,9 @@
-@use "base/reset";
+@use 'scss-reset/reset';
 @use "base/base";
 @use "layout/header";
-@use "layout/docs";
-@use "layout/markdown-area";
+@use "layout/header-item";
+@use "layout/text-editor";
 @use "layout/menu";
-@use "layout/responsive";
-@use "themes/dark-theme"
+@use "layout/menu-item";
+@use "responsive/responsive";
+@use "themes/theme-dark"
