@@ -81,14 +81,14 @@
 
   &__btns-container {
     // position: absolute;
-    // align-self: stretch;
-    // align-items: center;
     // height: 100%;
-    z-index: 2;
     position: sticky;
     right: 0;
     display: flex;
+    align-self: stretch;
+    align-items: center;
     gap: 1em;
+    z-index: 2;
     padding-right: 0.5em;
     background-color: $main;
     background: linear-gradient(90deg, transparent 0%, $main 8%);
