@@ -43,20 +43,6 @@
   }
 }
 
-.section-markdown__text,
-.section-preview__text,
-.header {
-  &::-webkit-scrollbar-thumb {
-    background-color: #b3b3b3;
-    border-radius: 10px;
-    border: 0px solid $main;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: $main;
-  }
-}
-
 .section-markdown {
   &__text {
     width: 100%;

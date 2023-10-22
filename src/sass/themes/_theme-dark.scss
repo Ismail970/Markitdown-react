@@ -4,6 +4,16 @@ $main-bg: #181a1b;
 $main: #2b2f31;
 
 .body--theme-dark {
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #868686;
+    border: 0px solid $main;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: $main;
+  }
+
   &,
   .section-markdown__text {
     background-color: #181a1b;
@@ -21,19 +31,6 @@ $main: #2b2f31;
   .section-preview__text,
   .fontAwesomeIcon--theme-dark {
     color: white;
-  }
-
-  .section-markdown__text,
-  .section-preview__text,
-  .header {
-    &::-webkit-scrollbar-thumb {
-      background-color: #868686;
-      border: 0px solid $main;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: $main;
-    }
   }
 
   .header {

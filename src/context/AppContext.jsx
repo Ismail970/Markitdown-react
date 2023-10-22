@@ -23,7 +23,6 @@ export const AppProvider = ({ children }) => {
     menuVisible: false,
     previewVisible: false,
     themeSwitched: false,
-    isHeaderTooWide:false,
   };
 
   const [items, setItems] = useState(initialState.items);
@@ -38,7 +37,6 @@ export const AppProvider = ({ children }) => {
   );
   const [markdownText, setMarkdownText] = useState("");
   const [buttonText, setButtonText] = useState("Save File");
-  const [isHeaderTooWide, setIsHeaderTooWide] = useState(initialState.isHeaderTooWide);
 
   const headerRef = useRef(null);
 
@@ -51,7 +49,6 @@ export const AppProvider = ({ children }) => {
       menuVisible,
       previewVisible,
       themeSwitched,
-      isHeaderTooWide,
     });
   }, [
     items,
@@ -60,7 +57,6 @@ export const AppProvider = ({ children }) => {
     menuVisible,
     previewVisible,
     themeSwitched,
-    isHeaderTooWide,
   ]);
 
   useEffect(() => {
@@ -145,7 +141,7 @@ export const AppProvider = ({ children }) => {
         left: headerRef.current.scrollWidth,
         behavior: "smooth",
       };
-    isHeaderTooWide && headerRef.current.scroll(options);
+    headerRef.current.scroll(options);
   };
 
   const handleItemClick = (id) => {
@@ -191,9 +187,6 @@ export const AppProvider = ({ children }) => {
         return items.itemIds[indexOfActive];
       }
     });
-
-    setIsHeaderTooWide(headerRef.current.scrollWidth > headerRef.current.offsetWidth);
-    headerWidthCheck()
   };
 
   const handleAddItem = (id) => {
@@ -207,7 +200,9 @@ export const AppProvider = ({ children }) => {
           : `Untitled${id}`,
       },
     }));
+
     setActiveItemId(id);
+
     setItems((prevItems) => ({
       ...prevItems,
       itemContent: {
@@ -215,14 +210,14 @@ export const AppProvider = ({ children }) => {
         [id]: items.itemContent[id] || "",
       },
     }));
-
-    setIsHeaderTooWide(headerRef.current.scrollWidth > headerRef.current.offsetWidth);
-    headerWidthCheck()
   };
 
   const handleAddNewItem = () => {
     const newItemKey = uuidv4();
     handleAddItem(newItemKey);
+
+    // debugger
+    headerWidthCheck()
   };
 
   const handleSaveItem = () => {
@@ -293,7 +288,6 @@ export const AppProvider = ({ children }) => {
         themeSwitched,
         markdownText,
         buttonText,
-        isHeaderTooWide,
         headerRef,
         toggleMenu,
         toggleTheme,
