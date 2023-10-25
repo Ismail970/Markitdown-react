@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import AppContext from "../context/AppContext";
-import { useContext, useRef, useEffect } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import Button from "./shared/Button";
 

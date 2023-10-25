@@ -1,7 +1,7 @@
 import { faBars, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faFloppyDisk } from "@fortawesome/free-regular-svg-icons";
 import HeaderItem from "./HeaderItem";
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import AppContext from "../context/AppContext";
 import Button from "./shared/Button";
 

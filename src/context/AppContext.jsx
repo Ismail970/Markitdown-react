@@ -115,6 +115,10 @@ export const AppProvider = ({ children }) => {
     setButtonText("Save File");
   }, [activeItemId]);
 
+  useEffect(() => {
+    headerScrollToEnd();
+  }, [items]);
+
   const handleTextChange = (e) => {
     setMarkdownText(e.target.value);
 
@@ -136,11 +140,11 @@ export const AppProvider = ({ children }) => {
     }));
   };
 
-  const headerWidthCheck = () => {
+  const headerScrollToEnd = () => {
     const options = {
-        left: headerRef.current.scrollWidth,
-        behavior: "smooth",
-      };
+      left: headerRef.current.scrollWidth,
+      behavior: "smooth",
+    };
     headerRef.current.scroll(options);
   };
 
@@ -215,9 +219,6 @@ export const AppProvider = ({ children }) => {
   const handleAddNewItem = () => {
     const newItemKey = uuidv4();
     handleAddItem(newItemKey);
-
-    // debugger
-    headerWidthCheck()
   };
 
   const handleSaveItem = () => {
@@ -248,18 +249,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
-  const togglePreview = () => {
-    setPreviewVisible(!previewVisible);
-  };
-
-  const toggleTheme = () => {
-    setThemeSwitched(!themeSwitched);
-  };
-
   const handleRemoveSavedItem = (idToRemove) => {
     const removeFromObject = (ob) => {
       return Object.fromEntries(
@@ -275,6 +264,18 @@ export const AppProvider = ({ children }) => {
       savedItemTitles: removeFromObject(prevSavedItems.savedItemTitles),
       savedItemContent: removeFromObject(prevSavedItems.savedItemContent),
     }));
+  };
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+  const togglePreview = () => {
+    setPreviewVisible(!previewVisible);
+  };
+
+  const toggleTheme = () => {
+    setThemeSwitched(!themeSwitched);
   };
 
   return (
