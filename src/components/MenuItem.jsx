@@ -40,7 +40,7 @@ function MenuItem({ id, title }) {
 
   return (
     <li className="saved-list-item">
-      <div className="saved-list-item__title" onClick={onItemClick}>
+      <div className="saved-list-item__container" onClick={onItemClick}>
         <FontAwesomeIcon icon={faFile} />
         <span>{truncatedTitle}</span>
         <p>.md</p>

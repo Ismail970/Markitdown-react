@@ -20,12 +20,13 @@
     }
   }
 
-  &__title {
+  &__container {
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     span {
-      padding-left: .5em;
+      padding-left: 0.5em;
     }
   }
 }

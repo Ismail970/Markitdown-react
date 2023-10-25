@@ -14,6 +14,8 @@ function MarkdownArea() {
     togglePreview,
     previewVisible,
     markdownText,
+    menuVisible,
+    toggleMenu,
   } = useContext(AppContext);
 
   const textAreaRef = useRef(null);
@@ -65,12 +67,20 @@ function MarkdownArea() {
     };
   }, []);
 
+  const toggleOverlay = () => {
+    if (menuVisible) {
+      toggleMenu();
+    }
+  };
+
   return (
     <>
       <section
-        className={`section-markdown ${!items.itemIds.length ? "section-markdown--hide" : ""} ${
-          previewVisible ? "section-markdown__preview--show" : ""
-        }`}
+        className={`section-markdown 
+        ${!items.itemIds.length ? "section-markdown--hide" : ""} 
+        ${previewVisible ? "section-markdown__preview--show" : ""} 
+        ${menuVisible ? "section-markdown--overlay" : ""}`}
+        onClick={toggleOverlay}
       >
         <header>
           <p>markdown</p>
@@ -93,9 +103,14 @@ function MarkdownArea() {
       </section>
 
       <section
-        className={`section-preview ${
-          !previewVisible || !items.itemIds.length ? "section-preview--hide" : ""
-        }`}
+        className={`section-preview 
+        ${
+          !previewVisible || !items.itemIds.length
+            ? "section-preview--hide"
+            : ""
+        } 
+        ${menuVisible ? "section-preview--overlay" : ""}`}
+        onClick={toggleOverlay}
       >
         <header>
           <p>preview</p>

@@ -7,7 +7,8 @@
   @include transition-ease(left);
   left: -100vw;
   min-width: 200px;
-  z-index: 2;
+  z-index: 1;
+  border-radius: 0 10px 10px 0;
 
   &--show {
     left: 0;

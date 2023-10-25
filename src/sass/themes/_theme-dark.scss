@@ -4,6 +4,10 @@ $main-bg: #181a1b;
 $main: #2b2f31;
 
 .body--theme-dark {
+  * {
+  scrollbar-width: auto;
+  scrollbar-color: #868686 $main;
+  }
   
   *::-webkit-scrollbar-thumb {
     background-color: #868686;
@@ -16,7 +20,7 @@ $main: #2b2f31;
 
   &,
   .section-markdown__text {
-    background-color: #181a1b;
+    background-color: $main-bg;
   }
 
   .header__container,
@@ -73,6 +77,12 @@ $main: #2b2f31;
   .section-preview {
     header {
       background-color: #202324;
+    }
+
+    &--overlay {
+      &::after {
+        background: rgba(100, 100, 100, 0.3);
+      }
     }
   }
 

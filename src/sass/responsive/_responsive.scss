@@ -40,3 +40,29 @@
     grid-column: 2 / -1;
   }
 }
+
+@include media-xl {
+  .section-markdown {
+    display: flex;
+    flex-direction: column;
+    
+    &__text {
+      max-width: 1440px;
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  .section-preview {
+    &__text {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@include media-xs {
+  body {
+    font-size: 0.8em;
+  }
+}

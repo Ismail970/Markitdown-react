@@ -31,8 +31,11 @@
 .section-preview,
 .saved-list-item,
 .list-item {
-  -webkit-animation: fade 500ms;
-  animation: fade 500ms;
+  &,
+  &--overlay::after {
+    -webkit-animation: fade 500ms;
+    animation: fade 500ms;
+  }
 }
 
 // Mixins
@@ -70,7 +73,7 @@ $bars: #f1f1f1;
 /* Firefox */
 * {
   scrollbar-width: auto;
-  scrollbar-color: #8f54a0 #ffffff;
+  scrollbar-color: #b3b3b3 $main;
 }
 
 /* Chrome, Edge, and Safari */
