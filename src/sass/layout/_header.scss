@@ -7,9 +7,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   justify-content: space-between;
-  
-  // padding-right: 10em;
-  // position: relative;
+  padding-right: 5em;
 
   &__container {
     display: flex;
@@ -70,10 +68,8 @@
   }
 
   &__btns-container {
-    // position: absolute;
-    // height: 100%;
-
-    position: sticky;
+    position: absolute;
+    height: 35px;
     right: 0;
     display: flex;
     align-self: stretch;
@@ -81,6 +77,7 @@
     gap: 1em;
     z-index: 2;
     padding-right: 0.5em;
+    padding-top: .5em;
     background-color: $main;
     background: linear-gradient(90deg, transparent 0%, $main 8%);
   }

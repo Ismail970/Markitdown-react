@@ -1,12 +1,14 @@
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import MenuItem from "./MenuItem";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import AppContext from "../context/AppContext";
 import Button from "./shared/Button";
 
 function Menu() {
-  const { savedItems, menuVisible, toggleTheme, themeSwitched } =
+  const { savedItems, menuVisible, toggleTheme, themeSwitched, scrollToEnd } =
     useContext(AppContext);
+
+  const menuRef = useRef(null)
 
   useEffect(() => {
     if (themeSwitched) {
@@ -21,8 +23,12 @@ function Menu() {
     };
   }, [themeSwitched]);
 
+  useEffect(() => {
+    scrollToEnd(menuRef.current, "bottom")
+  }, [savedItems]);
+
   return (
-    <div className={`menu ${menuVisible ? "menu--show" : ""}`}>
+    <div ref={menuRef} className={`menu ${menuVisible ? "menu--show" : ""}`}>
       <div className="menu__header">
         <p>
           Saved
@@ -34,7 +40,7 @@ function Menu() {
           fontAwesomeIcon={themeSwitched ? faSun : faMoon}
         />
       </div>
-      <ul className="menu__list-items">
+      <ul>
         {savedItems.savedItemIds.length === 0 ? (
           <p className="menu__list-alert">No file is saved</p>
         ) : (

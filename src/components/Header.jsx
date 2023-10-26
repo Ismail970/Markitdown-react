@@ -1,7 +1,7 @@
 import { faBars, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faFloppyDisk } from "@fortawesome/free-regular-svg-icons";
 import HeaderItem from "./HeaderItem";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import AppContext from "../context/AppContext";
 import Button from "./shared/Button";
 
@@ -13,8 +13,14 @@ function Header() {
     toggleMenu,
     handleSaveItem,
     handleAddNewItem,
-    headerRef,
+    scrollToEnd,
   } = useContext(AppContext);
+
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    scrollToEnd(headerRef.current, "left");
+  }, [items]);
 
   return (
     <header ref={headerRef} className="header">

@@ -92,6 +92,10 @@ $main: #2b2f31;
 
   .menu {
     background-color: $main-bg;
+
+    &__header {
+      background-image: linear-gradient(to bottom, $main-bg 93%, transparent);
+    }
   }
 
   .list-item {

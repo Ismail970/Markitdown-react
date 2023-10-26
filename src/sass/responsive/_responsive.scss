@@ -2,6 +2,8 @@
 
 @include media-lg {
   .header {
+    padding-right: 10em;
+
     &__btn-menu {
       &::after {
         content: "markitdown";
@@ -28,6 +30,12 @@
     gap: 0.1em;
   }
 
+  .menu {
+    &__list-alert {
+      transform: translate(40%, 50%);
+    }
+  }
+
   .section-markdown {
     grid-column: 1/-1;
 
@@ -45,7 +53,7 @@
   .section-markdown {
     display: flex;
     flex-direction: column;
-    
+
     &__text {
       max-width: 1440px;
       justify-self: center;

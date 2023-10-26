@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -37,8 +37,6 @@ export const AppProvider = ({ children }) => {
   );
   const [markdownText, setMarkdownText] = useState("");
   const [buttonText, setButtonText] = useState("Save File");
-
-  const headerRef = useRef(null);
 
   // Save data to local storage whenever the component states change
   useEffect(() => {
@@ -115,10 +113,6 @@ export const AppProvider = ({ children }) => {
     setButtonText("Save File");
   }, [activeItemId]);
 
-  useEffect(() => {
-    headerScrollToEnd();
-  }, [items]);
-
   const handleTextChange = (e) => {
     setMarkdownText(e.target.value);
 
@@ -140,12 +134,18 @@ export const AppProvider = ({ children }) => {
     }));
   };
 
-  const headerScrollToEnd = () => {
+  const scrollToEnd = (el, direction) => {
     const options = {
-      left: headerRef.current.scrollWidth,
       behavior: "smooth",
     };
-    headerRef.current.scroll(options);
+
+    if (direction === "left") {
+      options.left = el.scrollWidth;
+    } else if (direction === "bottom") {
+      options.top = el.scrollHeight;
+    }
+
+    el.scroll(options);
   };
 
   const handleItemClick = (id) => {
@@ -289,7 +289,6 @@ export const AppProvider = ({ children }) => {
         themeSwitched,
         markdownText,
         buttonText,
-        headerRef,
         toggleMenu,
         toggleTheme,
         togglePreview,
@@ -301,6 +300,7 @@ export const AppProvider = ({ children }) => {
         handleSaveItem,
         handleRemoveSavedItem,
         handleTextChange,
+        scrollToEnd,
       }}
     >
       {children}

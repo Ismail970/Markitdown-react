@@ -7,8 +7,10 @@
   @include transition-ease(left);
   left: -100vw;
   min-width: 200px;
-  z-index: 1;
+  z-index: 2;
   border-radius: 0 10px 10px 0;
+  overflow-x: auto;
+  padding-bottom: 5em;
 
   &--show {
     left: 0;
@@ -33,6 +35,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-image: linear-gradient(to bottom, white 93%, transparent);
+    z-index: 1;
 
     p {
       padding: 1em;
@@ -43,6 +49,6 @@
     position: fixed;
     opacity: 0.8;
     color: grey;
-    transform: translate(40%, 50%);
+    transform: translate(60%, 50%);
   }
 }
