@@ -46,10 +46,18 @@
     &__preview--show {
       grid-column: auto / auto;
     }
+
+    &__text {
+      max-height: 85vh;
+    }
   }
 
   .section-preview {
     grid-column: 2 / -1;
+
+    &__text {
+      height: 85vh;
+    }
   }
 }
 
