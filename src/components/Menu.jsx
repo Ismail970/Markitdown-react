@@ -23,9 +23,9 @@ function Menu() {
     };
   }, [themeSwitched]);
 
-  useEffect(() => {
-    scrollToEnd(menuRef.current, "bottom")
-  }, [savedItems]);
+  // useEffect(() => {
+  //   scrollToEnd(menuRef.current, "bottom")
+  // }, [savedItems]);
 
   return (
     <div ref={menuRef} className={`menu ${menuVisible ? "menu--show" : ""}`}>

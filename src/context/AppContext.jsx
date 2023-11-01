@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
-const AppContext = createContext(); 
+const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [state, saveState] = useLocalStorage("state", null);
