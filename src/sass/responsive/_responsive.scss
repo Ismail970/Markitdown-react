@@ -28,11 +28,11 @@
     }
   }
 
-  .main {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.1em;
-  }
+  // .main {
+  //   display: grid;
+  //   grid-template-columns: repeat(2, 1fr);
+  //   gap: 0.1em;
+  // }
 
   .menu {
     &__list-alert {
@@ -40,43 +40,51 @@
     }
   }
 
-  .section-markdown {
-    grid-column: 1/-1;
+  .editor {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.1em;
 
-    &__preview--show {
-      grid-column: auto / auto;
+    &__section-markdown {
+      // grid-column: 1/-1;
+
+      // &--preview-visible {
+      //   grid-column: auto / auto;
+      // }
+
+      .editor__section-text {
+        max-height: 85vh;
+      }
     }
 
-    &__text {
-      max-height: 85vh;
-    }
-  }
+    &__section-preview {
+      grid-column: 2/-1;
 
-  .section-preview {
-    grid-column: 2 / -1;
-
-    &__text {
-      height: 85vh;
+      .editor__section-text {
+        height: 85vh;
+      }
     }
   }
 }
 
 @include media-xl {
-  .section-markdown {
-    display: flex;
-    flex-direction: column;
+  .editor {
+    &__section-markdown {
+      display: flex;
+      flex-direction: column;
 
-    &__text {
-      max-width: 1440px;
-      justify-self: center;
-      align-self: center;
+      .editor__section-text {
+        max-width: 1440px;
+        justify-self: center;
+        align-self: center;
+      }
     }
-  }
 
-  .section-preview {
-    &__text {
-      max-width: 1440px;
-      margin: 0 auto;
+    &__section-preview {
+      .editor__section-text {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
     }
   }
 }

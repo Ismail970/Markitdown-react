@@ -36,7 +36,7 @@ function Main() {
         <p className="main__alert">No file is opened</p>
       )}
 
-     {/* <button className="main__btn-input-drop" onDragOver={handleDragOver} onDrop={handleDrop}></button>
+      {/*<button className="main__btn-input-drop" onDragOver={handleDragOver} onDrop={handleDrop}></button>
 
       <input
         type="file"

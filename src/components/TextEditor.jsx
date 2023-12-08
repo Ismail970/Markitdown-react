@@ -74,19 +74,20 @@ function MarkdownArea() {
   };
 
   return (
-    <>
+    <div
+      className={`editor ${menuVisible ? "editor--overlay" : ""}`}
+      onClick={toggleOverlay}
+    >
       <section
-        className={`section-markdown 
-        ${!items.itemIds.length ? "section-markdown--hide" : ""} 
-        ${previewVisible ? "section-markdown__preview--show" : ""} 
-        ${menuVisible ? "section-markdown--overlay" : ""}`}
-        onClick={toggleOverlay}
+        className={`editor__section-markdown ${
+          !items.itemIds.length ? "editor__section--hide" : ""
+        } ${previewVisible ? "editor__section-markdown--preview-visible" : ""}`}
       >
         <header>
           <p>markdown</p>
           {!previewVisible && (
             <Button
-              className={"section-markdown__btn-preview"}
+              className={"editor__section-btn-preview"}
               eventHandler={togglePreview}
               fontAwesomeIcon={faEye}
             />
@@ -95,7 +96,7 @@ function MarkdownArea() {
 
         <TextareaAutosize
           name="text"
-          className="section-markdown__text"
+          className="editor__section-text"
           onChange={handleTextChange}
           value={items.itemContent[activeItemId]}
           ref={textAreaRef}
@@ -103,31 +104,28 @@ function MarkdownArea() {
       </section>
 
       <section
-        className={`section-preview 
-        ${
+        className={`editor__section-preview ${
           !previewVisible || !items.itemIds.length
-            ? "section-preview--hide"
+            ? "editor__section--hide"
             : ""
-        } 
-        ${menuVisible ? "section-preview--overlay" : ""}`}
-        onClick={toggleOverlay}
+        }`}
       >
         <header>
           <p>preview</p>
           {previewVisible && (
             <Button
-              className={"section-preview__btn-preview"}
+              className={"editor__section-btn-preview"}
               eventHandler={togglePreview}
               fontAwesomeIcon={faEyeSlash}
             />
           )}
         </header>
 
-        <div className="section-preview__text" ref={previewRef}>
+        <div className="editor__section--text" ref={previewRef}>
           <ReactMarkdown>{markdownText}</ReactMarkdown>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

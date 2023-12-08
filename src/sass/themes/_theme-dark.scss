@@ -4,11 +4,13 @@ $main-bg: #181a1b;
 $main: #2b2f31;
 
 .body--theme-dark {
+  background-color: $main-bg;
+
   * {
-  scrollbar-width: auto;
-  scrollbar-color: #868686 $main;
+    scrollbar-width: auto;
+    scrollbar-color: #868686 $main;
   }
-  
+
   *::-webkit-scrollbar-thumb {
     background-color: #868686;
     border: 0px solid $main;
@@ -18,22 +20,16 @@ $main: #2b2f31;
     background-color: $main;
   }
 
-  &,
-  .section-markdown__text {
-    background-color: $main-bg;
-  }
-
+  .fontAwesomeIcon--theme-dark,
   .header__container,
   .header__btn-remove,
   .header__btn-save,
   .header__btn-add,
   .menu,
-  .section-preview__btn-preview,
-  .section-markdown header,
-  .section-preview header,
-  .section-markdown__text,
-  .section-preview__text,
-  .fontAwesomeIcon--theme-dark {
+  .editor__section-btn-preview,
+  .editor__section-markdown header,
+  .editor__section-preview header,
+  .editor__section-text {
     color: white;
   }
 
@@ -73,21 +69,24 @@ $main: #2b2f31;
     }
   }
 
-  .section-markdown,
-  .section-preview {
-    header {
-      background-color: #202324;
-    }
-
+  .editor {
     &--overlay {
       &::after {
         background: rgba(100, 100, 100, 0.3);
       }
     }
-  }
 
-  .section-preview {
-    background-color: $main-bg;
+    &__section-markdown,
+    &__section-preview {
+      header {
+        background-color: #202324;
+      }
+    }
+
+    &__section-preview,
+    &__section-text {
+      background-color: $main-bg;
+    }
   }
 
   .menu {
