@@ -96,7 +96,7 @@ function MarkdownArea() {
 
         <TextareaAutosize
           name="text"
-          className="editor__section-text"
+          className="section-markdown--text"
           onChange={handleTextChange}
           value={items.itemContent[activeItemId]}
           ref={textAreaRef}
@@ -121,7 +121,7 @@ function MarkdownArea() {
           )}
         </header>
 
-        <div className="editor__section--text" ref={previewRef}>
+        <div className="section-preview--text" ref={previewRef}>
           <ReactMarkdown>{markdownText}</ReactMarkdown>
         </div>
       </section>

@@ -39,7 +39,7 @@
   }
 
   &__section-markdown {
-    .editor__section-text {
+    .section-markdown--text {
       width: 100%;
       resize: none;
       border: 0;
@@ -58,7 +58,7 @@
     background-color: white;
     min-height: 100vh;
 
-    .editor__section-text {
+    .section-preview--text {
       line-height: 1.4;
       padding: 1em;
       overflow-y: auto;

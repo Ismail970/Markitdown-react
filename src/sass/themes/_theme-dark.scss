@@ -29,7 +29,8 @@ $main: #2b2f31;
   .editor__section-btn-preview,
   .editor__section-markdown header,
   .editor__section-preview header,
-  .editor__section-text {
+  .section-preview--text,
+  .section-markdown--text {
     color: white;
   }
 
@@ -84,7 +85,8 @@ $main: #2b2f31;
     }
 
     &__section-preview,
-    &__section-text {
+    .section-preview--text
+    .section-markdown--text {
       background-color: $main-bg;
     }
   }

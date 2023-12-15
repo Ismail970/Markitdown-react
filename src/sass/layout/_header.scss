@@ -12,7 +12,6 @@
   &__container {
     display: flex;
     gap: 0.5em;
-
   }
 
   &__nav-items {
@@ -69,7 +68,7 @@
 
   &__btns-container {
     position: absolute;
-    height: 35px;
+    height: 45px;
     right: 0;
     display: flex;
     align-self: stretch;

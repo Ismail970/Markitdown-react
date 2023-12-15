@@ -134,20 +134,6 @@ export const AppProvider = ({ children }) => {
     }));
   };
 
-  const scrollToEnd = (el, direction) => {
-    const options = {
-      behavior: "smooth",
-    };
-
-    if (direction === "left") {
-      options.left = el.scrollWidth;
-    } else if (direction === "bottom") {
-      options.top = el.scrollHeight;
-    }
-
-    el.scroll(options);
-  };
-
   const handleItemClick = (id) => {
     setActiveItemId(id);
   };
@@ -292,7 +278,6 @@ export const AppProvider = ({ children }) => {
         toggleMenu,
         toggleTheme,
         togglePreview,
-        scrollToEnd,
         handleAddNewItem,
         handleAddItem,
         handleItemClick,

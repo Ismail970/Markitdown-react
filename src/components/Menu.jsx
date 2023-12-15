@@ -8,8 +8,6 @@ function Menu() {
   const { savedItems, menuVisible, toggleTheme, themeSwitched, scrollToEnd } =
     useContext(AppContext);
 
-  const menuRef = useRef(null)
-
   useEffect(() => {
     if (themeSwitched) {
       document.body.classList.add("body--theme-dark");
@@ -23,12 +21,8 @@ function Menu() {
     };
   }, [themeSwitched]);
 
-  // useEffect(() => {
-  //   scrollToEnd(menuRef.current, "bottom")
-  // }, [savedItems]);
-
   return (
-    <div ref={menuRef} className={`menu ${menuVisible ? "menu--show" : ""}`}>
+    <div className={`menu ${menuVisible ? "menu--show" : ""}`}>
       <div className="menu__header">
         <p>
           Saved
