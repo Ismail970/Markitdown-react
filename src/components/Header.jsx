@@ -16,7 +16,7 @@ function Header() {
   } = useContext(AppContext);
 
   useEffect(() => {
-    document.querySelector(".list-item--active").scrollIntoView({behavior : "smooth"})
+    document.querySelector(".list-item--active")?.scrollIntoView({behavior : "smooth"})
   }, [activeItemId])
 
 
